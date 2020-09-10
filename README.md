@@ -1,2 +1,3 @@
-# Opencv-python
-Study of the opencv python library
+# Opencv
+
+### Study of the opencv python library
