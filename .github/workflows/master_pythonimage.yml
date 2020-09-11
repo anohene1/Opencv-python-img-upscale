@@ -31,4 +31,4 @@ jobs:
       with:
         app-name: 'pythonimage'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6b2ccdf7ee0345e7840d941a0da1e613 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ffed5b1fe45b404db05fdb29e6c1bb4e }}
