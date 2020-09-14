@@ -4,12 +4,12 @@ from flask import send_file
 import urllib.request
 from datetime import datetime
 
-app = Flask(__name__)
+myapp = Flask(__name__)
 
 import cv2
 from cv2 import dnn_superres
 
-@app.route('/')
+@myapp.route('/')
 def imageProcess():
     imgName = str(datetime.now())+".jpg"
     imgURL = 'https://media.geeksforgeeks.org/wp-content/uploads/20190802022327/Annotation-2019-08-02-022111.png'
@@ -31,9 +31,7 @@ def imageProcess():
     cv2.imwrite(imgName, result)
 
 
-
+    
     ImgToSend = send_file(imgName, attachment_filename=imgName)
     os.remove(imgName)
     return ImgToSend
-
-    
