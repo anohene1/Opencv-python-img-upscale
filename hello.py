@@ -1,3 +1,5 @@
+from cv2 import dnn_superres
+import cv2
 import os
 from flask import Flask
 from flask import send_file
@@ -6,15 +8,12 @@ from datetime import datetime
 
 myapp = Flask(__name__)
 
-import cv2
-from cv2 import dnn_superres
 
 @myapp.route('/')
 def imageProcess():
     imgName = str(datetime.now())+".jpg"
     imgURL = 'https://media.geeksforgeeks.org/wp-content/uploads/20190802022327/Annotation-2019-08-02-022111.png'
-    urllib.request.urlretrieve(imgURL,imgName)
-    
+    urllib.request.urlretrieve(imgURL, imgName)
 
     # Create an SR object - only function that differs from c++ code
     sr = dnn_superres.DnnSuperResImpl_create()
@@ -30,8 +29,10 @@ def imageProcess():
     # Save the image
     cv2.imwrite(imgName, result)
 
-
-    
+    # save the image to memory
     ImgToSend = send_file(imgName, attachment_filename=imgName)
+
+    # remove the local image
     os.remove(imgName)
+
     return ImgToSend
